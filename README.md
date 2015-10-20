@@ -69,6 +69,9 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 # update brew packages
 brew update
 
+If you get the error "Failed to locate Homebrew!", you problably upgraded from from Maverick to Yosemite (fix:
+https://github.com/Homebrew/homebrew/issues/44460
+
 # Install homesick https://github.com/technicalpickles/homesick
 gem install homesick --no-rdoc --no-ri
 
