@@ -5,17 +5,23 @@ ENV_KEY = "AUTHORIZED_GIT_USERS"
 begin
   `mkdir /root/.ssh`
   `touch /root/.ssh/authorized_keys`
-  ENV[ENV_KEY].split(",").map(&:strip).each do |username|
-    output = `gh-auth add --users=#{username}`
-    if output.include?("Adding 0 key")
-      puts <<-EOS
-        The user '#{username}' either does not exist on GitHub or does not have
-        any SSH keys uploaded!
-      EOS
-      exit 1
-    end
+  if File.exists?('/root/id_rsa.pub')
+    puts "Authorizing SSH Key: /root/id_rsa.pub"
+    `cat /root/id_rsa.pub >> /root/.ssh/authorized_keys`
+  else
+    ENV[ENV_KEY].split(",").map(&:strip).each do |username|
+      output = `gh-auth add --users=#{username}`
+      if output.include?("Adding 0 key")
+        puts <<-EOS
+          The user '#{username}' either does not exist on GitHub or does not have
+          any SSH keys uploaded!
+        EOS
+        exit 1
+      end
 
-    puts "Authorized SSH key(s) for #{username}..."
+      puts "Authorized SSH key(s) for #{username}..."
+
+    end
   end
 rescue
   puts <<-EOS
