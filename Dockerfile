@@ -43,8 +43,8 @@ ENV LC_ALL en_US.UTF-8
 
 RUN \
 # tmux plugins
-    git clone https://github.com/ThomasAdam/tmux.git /usr/local/share/tmux &&\
-    (cd /usr/local/share/tmux  && git checkout -b tags/2.0 && sh autogen.sh && ./configure && make && make install) &&\
+    git clone https://github.com/tmux/tmux.git /usr/local/share/tmux &&\
+    (cd /usr/local/share/tmux  && git checkout -b tags/2.1 && sh autogen.sh && ./configure && make && make install) &&\
 # wemux
     git clone https://github.com/zolrath/wemux.git /usr/local/share/wemux &&\
     (cd /usr/local/share/wemux && git checkout -b tags/v3.2.0) &&\
