@@ -18,7 +18,7 @@ RUN  apt-get install -y \
 # dev (for golang)
         gcc g++ libc6-dev make \
 # tmux deps
-        libevent-dev ncurses-dev pkg-config automake \
+        libevent-dev ncurses-dev pkg-config automake xclip \
 # homesick deps
         ruby \
 # zsh, openssh
