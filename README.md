@@ -32,6 +32,7 @@ Host devbox
   Port <MAPPED PORT>
   User root
   ForwardAgent true
+  ForwardX11 true
   StrictHostKeyChecking no
   UserKnownHostsFile=/dev/null
 ```
@@ -57,7 +58,13 @@ ssh devbox
 First, set `http_proxy`, `https_proxy` ENV if needed. ex:
 
 ```bash
-export http_proxy=http://USER:PASSWORD@HOST:PORT
+echo "export PROXY_HOST=HOST" >> ~/.profile
+echo "export PROXY_PORT=PORT" >> ~/.profile
+
+echo "source ~/.profile" >> ~/.zprofile
+source ~/.profile
+
+export http_proxy=http://USER:PASSWORD@$PROXY_HOST:$PROXY_PORT
 export https_proxy=$http_proxy
 ```
 
@@ -68,6 +75,9 @@ then
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 # update brew packages
 brew update
+
+# Reattach-to-user-namespace (used by tmux)
+brew install reattach-to-user-namespace
 
 # Install homesick https://github.com/technicalpickles/homesick
 gem install homesick --no-rdoc --no-ri
