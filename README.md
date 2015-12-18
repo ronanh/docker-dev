@@ -88,6 +88,9 @@ homesick symlink zshfiles
 homesick clone ronanh/vimfiles
 homesick symlink vimfiles
 
+# Install vim bundles
+~/.vim/bundle/neobundle.vim/bin/neoinstall
+
 # Retrieve or generate new ssh Key 
 # ssh-keygen -t rsa  -b 4096 -C "EMAIL"
 
