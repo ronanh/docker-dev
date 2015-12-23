@@ -68,13 +68,13 @@ RUN \
     echo "AllowAgentForwarding yes" >> /etc/ssh/sshd_config
 
 # Erlang
-ENV ERLANG_VERSION 18.1-1
+ENV ERLANG_VERSION 18.2-1
 RUN wget --no-verbose http://packages.erlang-solutions.com/site/esl/esl-erlang/FLAVOUR_1_general/esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb &&\
     dpkg -i esl-erlang_$ERLANG_VERSION~ubuntu~trusty_amd64.deb
 
 # Elixir/Phoenix
 ENV ELIXIR_VERSION 1.1.1
-ENV PHOENIX_VERSION 1.0.3
+ENV PHOENIX_VERSION 1.1.0
 RUN wget --no-verbose https://github.com/elixir-lang/elixir/releases/download/v$ELIXIR_VERSION/Precompiled.zip &&\
     unzip Precompiled.zip -d /usr/local/elixir-$ELIXIR_VERSION &&\
     ln -s /usr/local/elixir-$ELIXIR_VERSION/bin/elixirc /usr/local/bin/ &&\
@@ -87,9 +87,9 @@ RUN wget --no-verbose https://github.com/elixir-lang/elixir/releases/download/v$
     /usr/local/bin/mix archive.install https://github.com/phoenixframework/phoenix/releases/download/v$PHOENIX_VERSION/phoenix_new-$PHOENIX_VERSION.ez --force
 
 # Golang
-ENV GOLANG_VERSION 1.5.1
+ENV GOLANG_VERSION 1.5.2
 ENV GOLANG_DOWNLOAD_URL https://golang.org/dl/go$GOLANG_VERSION.linux-amd64.tar.gz
-ENV GOLANG_DOWNLOAD_SHA1 46eecd290d8803887dec718c691cc243f2175fe0
+ENV GOLANG_DOWNLOAD_SHA1 cae87ed095e8d94a81871281d35da7829bd1234e
 ENV GOPATH /go
 
 RUN curl -fsSL "$GOLANG_DOWNLOAD_URL" -o golang.tar.gz \
