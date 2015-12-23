@@ -36,7 +36,9 @@ RUN  apt-get install -y \
 
 # Locale
 RUN locale-gen en_US en_US.UTF-8 && dpkg-reconfigure locales &&\
-    echo "\nLANGUAGE=en_US.UTF-8\nLANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8" >> /etc/environment
+    echo "\nLANGUAGE=en_US.UTF-8\nLANG=en_US.UTF-8\nLC_ALL=en_US.UTF-8" >> /etc/environment &&\
+    echo "Europe/Paris" > /etc/timezone &&\
+    dpkg-reconfigure -f noninteractive tzdata
 ENV LANGUAGE en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LC_ALL en_US.UTF-8
